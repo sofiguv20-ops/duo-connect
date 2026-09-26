@@ -14,13 +14,94 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      couple_members: {
+        Row: {
+          couple_id: string
+          joined_at: string
+          user_id: string
+        }
+        Insert: {
+          couple_id: string
+          joined_at?: string
+          user_id: string
+        }
+        Update: {
+          couple_id?: string
+          joined_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "couple_members_couple_id_fkey"
+            columns: ["couple_id"]
+            isOneToOne: false
+            referencedRelation: "couples"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      couples: {
+        Row: {
+          created_at: string
+          created_by: string
+          id: string
+          invite_code: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          id?: string
+          invite_code?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          id?: string
+          invite_code?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_path: string | null
+          birthdate: string | null
+          created_at: string
+          display_name: string
+          id: string
+          pronouns: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_path?: string | null
+          birthdate?: string | null
+          created_at?: string
+          display_name?: string
+          id: string
+          pronouns?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_path?: string | null
+          birthdate?: string | null
+          created_at?: string
+          display_name?: string
+          id?: string
+          pronouns?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_couple: { Args: never; Returns: string }
+      is_partner: { Args: { _other: string }; Returns: boolean }
+      join_couple: { Args: { _code: string }; Returns: string }
+      leave_couple: { Args: never; Returns: undefined }
+      my_couple_id: { Args: never; Returns: string }
+      preview_invite: { Args: { _code: string }; Returns: string }
     }
     Enums: {
       [_ in never]: never
