@@ -41,25 +41,25 @@ function Perfil() {
 
   async function save() {
     const p = schema.safeParse({ display_name: name, pronouns, birthdate });
-    if (!p.success) return toast.error(p.error.issues[0].message);
+    if (!p.success) { toast.error(p.error.issues[0]?.message ?? "Revisa los datos"); return; }
     setBusy(true);
     const { error } = await supabase
       .from("profiles")
       .update({ display_name: p.data.display_name, pronouns: p.data.pronouns || null, birthdate: p.data.birthdate || null })
       .eq("id", session!.user.id);
     setBusy(false);
-    if (error) return toast.error("No se pudo guardar");
+    if (error) { toast.error("No se pudo guardar"); return; }
     qc.invalidateQueries({ queryKey: ["couple"] });
     toast.success("Perfil guardado");
   }
 
   async function upload(file: File) {
-    if (!file.type.startsWith("image/")) return toast.error("Elige una imagen");
-    if (file.size > 5 * 1024 * 1024) return toast.error("Máximo 5 MB");
+    if (!file.type.startsWith("image/")) { toast.error("Elige una imagen"); return; }
+    if (file.size > 5 * 1024 * 1024) { toast.error("Máximo 5 MB"); return; }
     const uid = session!.user.id;
     const path = `${uid}/${Date.now()}.${file.name.split(".").pop() || "jpg"}`;
     const { error } = await supabase.storage.from("avatars").upload(path, file, { upsert: true });
-    if (error) return toast.error("No se pudo subir la foto");
+    if (error) { toast.error("No se pudo subir la foto"); return; }
     const old = data?.me?.avatar_path;
     await supabase.from("profiles").update({ avatar_path: path }).eq("id", uid);
     if (old) supabase.storage.from("avatars").remove([old]);

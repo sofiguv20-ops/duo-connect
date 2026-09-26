@@ -40,8 +40,8 @@ function AuthPage() {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const parsed = schema.safeParse({ email, password, name: mode === "up" ? name : undefined });
-    if (!parsed.success) return toast.error(parsed.error.issues[0].message);
-    if (mode === "up" && !name.trim()) return toast.error("Dinos cómo te llamas");
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? "Revisa los datos"); return; }
+    if (mode === "up" && !name.trim()) { toast.error("Dinos cómo te llamas"); return; }
     setBusy(true);
     if (mode === "in") {
       const { error } = await supabase.auth.signInWithPassword({ email, password });

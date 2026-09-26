@@ -6,9 +6,9 @@ export function Avatar({
   name,
   className,
 }: {
-  path?: string | null;
-  name?: string | null;
-  className?: string;
+  path?: string | null | undefined;
+  name?: string | null | undefined;
+  className?: string | undefined;
 }) {
   const { data: url } = useAvatarUrl(path);
   return (

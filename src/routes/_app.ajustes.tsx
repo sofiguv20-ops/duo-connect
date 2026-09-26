@@ -25,7 +25,7 @@ function Ajustes() {
     const { error } = await supabase.rpc("leave_couple");
     setBusy(false);
     setConfirm(false);
-    if (error) return toast.error("No se pudo desvincular");
+    if (error) { toast.error("No se pudo desvincular"); return; }
     await qc.invalidateQueries({ queryKey: ["couple"] });
     toast.success("Pareja desvinculada");
   }

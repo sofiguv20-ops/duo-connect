@@ -36,7 +36,7 @@ function Pareja() {
     setBusy(true);
     const { error } = await supabase.rpc("create_couple");
     setBusy(false);
-    if (error) return toast.error(friendlyError(error.message));
+    if (error) { toast.error(friendlyError(error.message)); return; }
     qc.invalidateQueries({ queryKey: ["couple"] });
   }
 
@@ -48,11 +48,11 @@ function Pareja() {
 
   async function preview() {
     const c = code.trim().toUpperCase();
-    if (!/^[A-Z0-9]{6}$/.test(c)) return toast.error("El código tiene 6 caracteres");
+    if (!/^[A-Z0-9]{6}$/.test(c)) { toast.error("El código tiene 6 caracteres"); return; }
     setBusy(true);
     const { data: name, error } = await supabase.rpc("preview_invite", { _code: c });
     setBusy(false);
-    if (error) return toast.error(friendlyError(error.message));
+    if (error) { toast.error(friendlyError(error.message)); return; }
     setConfirmName(name || "tu pareja");
   }
 
@@ -60,7 +60,7 @@ function Pareja() {
     setBusy(true);
     const { error } = await supabase.rpc("join_couple", { _code: code.trim().toUpperCase() });
     setBusy(false);
-    if (error) { setConfirmName(null); return toast.error(friendlyError(error.message)); }
+    if (error) { setConfirmName(null); { toast.error(friendlyError(error.message)); return; } }
     await qc.invalidateQueries({ queryKey: ["couple"] });
     toast.success("¡Ya estáis vinculados!");
     navigate({ to: "/inicio" });
