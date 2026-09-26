@@ -15,6 +15,13 @@
       "when": 1790419825481,
       "tag": "0001_home_screen",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790419900000,
+      "tag": "0002_shared_calendar",
+      "breakpoints": true
     }
   ]
 }

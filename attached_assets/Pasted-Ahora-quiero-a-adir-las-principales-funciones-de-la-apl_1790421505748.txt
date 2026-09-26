@@ -1,0 +1,86 @@
+Ahora quiero añadir las principales funciones de la aplicación sin modificar ni eliminar las funciones que ya hemos creado.
+
+### 📅 CALENDARIO COMPARTIDO
+
+Crear un calendario privado para los dos miembros de la pareja con:
+
+* Vista mensual y semanal.
+* Crear, editar y eliminar eventos.
+* Eventos individuales o compartidos.
+* Título, fecha, hora de inicio y finalización, ubicación, notas y recordatorios.
+* Eventos de todo el día y repetitivos.
+* Categorías: cita, estudio, trabajo, cumpleaños, aniversario, viaje, plan y otros.
+* Diferenciar visualmente los eventos de cada persona y los compartidos.
+* Sección de próximos eventos.
+* Poder seleccionar un día y comprobar si la pareja tiene algo programado.
+* Notificaciones configurables para eventos próximos.
+* Diseñar todo pensando primero en móvil.
+
+### 🌙 SEGUIMIENTO MENSTRUAL
+
+Crear un módulo privado de seguimiento menstrual.
+
+La persona podrá registrar:
+
+* Primer día del periodo.
+* Duración del periodo.
+* Duración habitual del ciclo.
+* Síntomas.
+* Estado de ánimo.
+* Dolor.
+* Flujo.
+* Energía.
+* Sueño.
+* Notas personales.
+
+Mostrar un calendario menstrual y estimaciones de:
+
+* Próximo periodo.
+* Duración estimada del ciclo.
+* Ventana fértil estimada.
+* Ovulación estimada.
+* Fase aproximada del ciclo.
+
+Todas las predicciones deben identificarse claramente como ESTIMACIONES y no como certezas médicas. La aplicación no debe presentarse como herramienta de diagnóstico ni como método anticonceptivo.
+
+Crear un apartado "Compartido con mi pareja", donde cada persona pueda elegir exactamente qué información menstrual puede ver su pareja:
+
+□ Próximo periodo
+□ Día del ciclo
+□ Fase del ciclo
+□ Ventana fértil estimada
+□ Síntomas
+□ Estado de ánimo
+□ Dolor
+□ Energía
+□ Notas
+
+El usuario debe poder revocar cualquier permiso inmediatamente.
+
+La pareja solo puede ver la información que haya sido autorizada.
+
+### 📍 UBICACIÓN COMPARTIDA
+
+Crear un sistema de ubicación basado en consentimiento explícito.
+
+Cada usuario puede activar o desactivar "Compartir mi ubicación".
+
+Cuando esté activado, la pareja podrá ver:
+
+* Ubicación actual.
+* Nombre.
+* Última actualización.
+* Estado de ubicación.
+* Mapa.
+
+Añadir lugares guardados como Casa, Instituto, Trabajo y lugares personalizados.
+
+Permitir notificaciones opcionales cuando la pareja llegue o salga de un lugar.
+
+No debe existir seguimiento oculto. Debe mostrarse claramente cuándo la ubicación está siendo compartida.
+
+No guardar historial de ubicación por defecto. Si se añade posteriormente, deberá requerir un permiso independiente.
+
+Mantener la privacidad y seguridad de todas estas funciones y comprobar que ningún usuario pueda acceder a información de otra pareja.
+
+No modificar las funciones existentes; integrar todo con la arquitectura actual.
