@@ -14,6 +14,7 @@ export type CoupleState = {
   me: Profile | null;
   coupleId: string | null;
   inviteCode: string | null;
+  startedOn: string | null;
   partner: Profile | null;
 };
 
@@ -30,9 +31,9 @@ export function useCouple() {
         .select("couple_id")
         .eq("user_id", uid!)
         .maybeSingle();
-      if (!membership) return { me, coupleId: null, inviteCode: null, partner: null };
+      if (!membership) return { me, coupleId: null, inviteCode: null, startedOn: null, partner: null };
       const [{ data: couple }, { data: members }] = await Promise.all([
-        supabase.from("couples").select("invite_code").eq("id", membership.couple_id).maybeSingle(),
+        supabase.from("couples").select("invite_code, started_on").eq("id", membership.couple_id).maybeSingle(),
         supabase.from("couple_members").select("user_id").eq("couple_id", membership.couple_id),
       ]);
       const partnerId = members?.find((m) => m.user_id !== uid)?.user_id;
@@ -41,7 +42,7 @@ export function useCouple() {
         const { data } = await supabase.from("profiles").select("*").eq("id", partnerId).maybeSingle();
         partner = data;
       }
-      return { me, coupleId: membership.couple_id, inviteCode: couple?.invite_code ?? null, partner };
+      return { me, coupleId: membership.couple_id, inviteCode: couple?.invite_code ?? null, startedOn: couple?.started_on ?? null, partner };
     },
   });
 }
