@@ -46,18 +46,21 @@ export type Database = {
           created_by: string
           id: string
           invite_code: string | null
+          started_on: string | null
         }
         Insert: {
           created_at?: string
           created_by: string
           id?: string
           invite_code?: string | null
+          started_on?: string | null
         }
         Update: {
           created_at?: string
           created_by?: string
           id?: string
           invite_code?: string | null
+          started_on?: string | null
         }
         Relationships: []
       }
@@ -91,17 +94,86 @@ export type Database = {
         }
         Relationships: []
       }
+      user_settings: {
+        Row: {
+          hidden_home_cards: string[]
+          share_activity: boolean
+          share_custom_status: boolean
+          share_cycle_phase: boolean
+          share_location: boolean
+          share_mood: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          hidden_home_cards?: string[]
+          share_activity?: boolean
+          share_custom_status?: boolean
+          share_cycle_phase?: boolean
+          share_location?: boolean
+          share_mood?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          hidden_home_cards?: string[]
+          share_activity?: boolean
+          share_custom_status?: boolean
+          share_cycle_phase?: boolean
+          share_location?: boolean
+          share_mood?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_status: {
+        Row: {
+          activity: string | null
+          custom_status: string | null
+          mood: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          activity?: string | null
+          custom_status?: string | null
+          mood?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          activity?: string | null
+          custom_status?: string | null
+          mood?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
       create_couple: { Args: never; Returns: string }
+      get_partner_status: {
+        Args: never
+        Returns: {
+          activity: string
+          custom_status: string
+          mood: string
+          shares_cycle: boolean
+          shares_location: boolean
+          updated_at: string
+        }[]
+      }
       is_partner: { Args: { _other: string }; Returns: boolean }
       join_couple: { Args: { _code: string }; Returns: string }
       leave_couple: { Args: never; Returns: undefined }
       my_couple_id: { Args: never; Returns: string }
       preview_invite: { Args: { _code: string }; Returns: string }
+      set_couple_start: { Args: { _date: string }; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
